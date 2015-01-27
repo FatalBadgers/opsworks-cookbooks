@@ -6,7 +6,7 @@ module OpsWorks
         Chef::Log.info("bower.json detected. Running bower install.")
         Chef::Log.info(OpsWorks::ShellOut.shellout("sudo su - #{app_config[:user]} -c 'cd #{app_root_path} && npm #{npm_install_options}' 2>&1"))
         Chef::Log.info(OpsWorks::ShellOut.shellout("npm install -g bower 2>&1"))
-        Chef::Log.info(OpsWorks::ShellOut.shellout("bower install 2>&1"))
+        Chef::Log.info(OpsWorks::ShellOut.shellout("bower install --allow-root 2>&1"))
       end
     end
   end
