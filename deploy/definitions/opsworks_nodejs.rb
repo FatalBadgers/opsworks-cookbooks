@@ -11,14 +11,6 @@ define :opsworks_nodejs do
       cwd "#{deploy[:deploy_to]}/current"
     end
   end
-  
-  execute "install bower" do
-    command "/usr/local/bin/npm install -g bower"
-  end
-  
-  execute "install bower dependencies" do
-    command "/usr/local/bin/bower install"
-  end
 
   template "#{deploy[:deploy_to]}/shared/config/opsworks.js" do
     cookbook 'opsworks_nodejs'
