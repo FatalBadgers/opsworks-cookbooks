@@ -7,9 +7,17 @@ define :opsworks_nodejs do
   end
 
   node[:dependencies][:npms].each do |npm, version|
-    execute "sudo /usr/local/bin/npm install #{npm}" do
+    execute "/usr/local/bin/npm install #{npm}" do
       cwd "#{deploy[:deploy_to]}/current"
     end
+  end
+  
+  execute "install bower" do
+    command "/usr/local/bin/npm install -g bower"
+  end
+  
+  execute "install bower dependencies" do
+    command "/usr/local/bin/bower install"
   end
 
   template "#{deploy[:deploy_to]}/shared/config/opsworks.js" do
